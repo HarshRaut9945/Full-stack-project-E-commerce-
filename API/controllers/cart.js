@@ -28,6 +28,7 @@ export const addToCart = async (req, res) => {
     // 4️⃣ If product already exists → increase quantity
     if (itemIndex > -1) {
       cart.items[itemIndex].qty += qty;
+      cart.items[itemIndex].price+=price*qty
     } 
     // 5️⃣ If product is new → push into cart items
     else {
@@ -126,4 +127,42 @@ export const clearCart = async (req, res) => {
 };
 
 
+// Decrease product quantity in cart
+export const decreaseproductToQy = async (req, res) => {
+  const { productId } = req.body;
+  const userId = "697f98bab461b951d36b8d56";
+  try {
+    let cart = await Cart.findOne({ userId });
+    if (!cart) {
+      return res.status(404).json({ message: "Cart not found" });
+    }
+    // 3️⃣ Find product index in cart
+    const itemIndex = cart.items.findIndex(
+      (item) => item.productId.toString() === productId
+    );
+    // 4️⃣ If product not found in cart
+    if (itemIndex === -1) {
+      return res.status(404).json({ message: "Product not found in cart" });
+    }
+    // 5️⃣ If quantity is more than 1 → decrease qty
+    if (cart.items[itemIndex].qty > 1) {
+      cart.items[itemIndex].qty -= 1;
+    } 
+    // 6️⃣ If quantity becomes 1 → remove product from cart
+    else {
+      cart.items.splice(itemIndex, 1);
+    }
+    // 7️⃣ Save updated cart
+    await cart.save();
 
+    // 8️⃣ Send response
+    res.status(200).json({
+      message: "Product quantity decreased",
+      cart,
+    });
+
+  } catch (error) {
+    // 9️⃣ Handle errors
+    res.status(500).json({ message: error.message });
+  }
+};

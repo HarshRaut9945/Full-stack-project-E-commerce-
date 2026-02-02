@@ -1,5 +1,5 @@
   import express from "express";
-import { addToCart, removeProductFromCart, useCart } from "../controllers/cart.js";
+import { addToCart, clearCart, removeProductFromCart, useCart } from "../controllers/cart.js";
   const router =express.Router();
 
 
@@ -13,5 +13,10 @@ router.get('/user',useCart)
 router.delete('/remove/:productId',removeProductFromCart)
 
 //clear all cart
+router.delete('/clear',clearCart)
+
+// decrease item qty
+router.post('/--qty')
+
 
   export default router;
