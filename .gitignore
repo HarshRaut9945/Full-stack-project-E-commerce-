@@ -1,0 +1,40 @@
+# Node modules
+/node_modules
+/**/node_modules
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Build output (if you have frontend React build folder)
+# Adjust if your frontend folder is named "client"
+client/build
+dist
+out
+
+# MongoDB local data (if you ever use it)
+data/
+
+# Optional coverage reports (if using Jest)
+coverage/
+
+# Optional cache folders
+.cache/

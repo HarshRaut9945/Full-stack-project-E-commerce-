@@ -1,0 +1,32 @@
+--------------Mern E-Commernce API-------------
+
+User API Endpoint
+ 
+Post-api/user/register-register a new User
+Post-api/user/login-Login existing User
+Get-api/user/profile-Get User Profile
+Get-api/user/all-Get All User
+
+PRODUCT API POINT
+Post-api/product/add-register a new User
+Get-api/product/all-Get All User
+Get-api/product/:id-Find Prosuct by Id
+put-api/product/:id-Update a product by id
+Delete-api/product/:id - Delete a product by id
+
+CART API END POINT
+Post-api/cart/add-Add product to the cart
+Get-api/cart/user-Retrive the user specific cart 
+post-api/cart/--qty-Descrease the quantity of a product int the cart
+Delete-api/cart/remove/:Remove a Product from a cart(Authentication Req)
+Delete-api/cart/clear -Delete all the product from the cart(Authentication Req)
+
+SHOPING ADDRESS API Endpoint
+
+post- api/address/checkout- intialise the payment process
+post- api/address/verify-paymnet- conform the payment and save to the db
+
+
+order conformation API endpoint 
+GET-api/order/conform- User specific order (Authentication Req)
+GET-api/order/conform/all- All User orders
