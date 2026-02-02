@@ -66,5 +66,64 @@ export const useCart=async(req,res)=>{
         res.json({message:"user cart",cart})
 }
 
-//Remove Product
-export const removeProductFromcart=
+// Remove product from cart
+export const removeProductFromCart = async (req, res) => {
+  try {
+    const { productId } = req.params;
+    // Temporary hardcoded userId (later replace with JWT user id)
+    const userId = "697f98bab461b951d36b8d56";
+    // Find user's cart
+    const cart = await Cart.findOne({ userId });
+    // If cart does not exist
+    if (!cart) {
+      return res.status(404).json({ message: "Cart not found" });
+    }
+    // Filter out the product to be removed
+    cart.items = cart.items.filter(
+      (item) => item.productId.toString() !== productId
+    );
+    // Save updated cart
+    await cart.save();
+    // Send success response
+    res.status(200).json({
+      message: "Product removed from cart successfully",
+      cart,
+    });
+  } catch (error) {
+    // Handle unexpected errors
+    res.status(500).json({ message: error.message });
+  }
+};
+
+
+// Clear entire cart
+export const clearCart = async (req, res) => {
+  try {
+    const userId = "697f98bab461b951d36b8d56";
+    // Find user's cart
+    let cart = await Cart.findOne({ userId });
+    // If cart does not exist, create a new empty cart
+    if (!cart) {
+      cart = new Cart({
+        userId,
+        items: [], // empty cart
+      });
+    } else {
+      // If cart exists, clear all items
+      cart.items = [];
+    }
+    // Save cart to database
+    await cart.save();
+    // Send response
+    res.status(200).json({
+      message: "Cart cleared successfully",
+      cart,
+    });
+  } catch (error) {
+    // Handle unexpected server errors
+    res.status(500).json({ message: error.message });
+  }
+};
+
+
+
