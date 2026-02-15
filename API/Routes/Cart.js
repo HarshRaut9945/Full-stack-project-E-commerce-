@@ -12,13 +12,13 @@ router.post('/add',Authenticated,addToCart)
 router.get('/user',useCart)
 
 // remove Product from cart
-router.delete('/remove/:productId',removeProductFromCart)
+router.delete('/remove/:productId',Authenticated,removeProductFromCart)
 
 //clear all cart
-router.delete('/clear',clearCart)
+router.delete('/clear',Authenticated,clearCart)
 
 // decrease item qty
-router.post('/--qty',decreaseproductToQy)
+router.post('/--qty',Authenticated,decreaseproductToQy)
 
 
   export default router;
