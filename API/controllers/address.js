@@ -27,7 +27,17 @@ export const addAdress = async (req, res) => {
   }
 };
 
-export const getAdress=async(req,res)=>{
-    let address=await address.find().sort({createdAt:-1})
-    res.json({message:'address',userAddress:address[0]})
-}
+export const getAdress = async (req, res) => {
+  try {
+    const userId = req.user;
+    const addresses = await Address
+      .find({ userId })
+      .sort({ createdAt: -1 });
+    res.json({
+      message: "User address",
+      userAddress: addresses[0] || null
+    });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};

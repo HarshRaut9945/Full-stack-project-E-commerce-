@@ -1,0 +1,24 @@
+Mern E-commerce  Frontend(React)
+
+__User Componen
+1.Register jsx
+2.Login jsx
+3.Profile.jsx
+4.GetAllUser.jsx(admin side)
+
+__Product Component
+1.ShowProduct.jsx
+2.ProductDetail.jsx
+3.Relatedproduct.jsx
+4.Searchproduct.jsx
+5.AddProduct.jsx
+6.Editproduct.jsx
+7.ShowProductAdmin.jsx(admin side)
+
+_Other Component
+1.Navbar.jsx
+2.Cart.jsx
+3.Adress.jsx
+4.Checkout.jsx
+5.OrderConformation.jsx
+6.AllOrder.jsx

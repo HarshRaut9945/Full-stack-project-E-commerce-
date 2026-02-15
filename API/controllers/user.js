@@ -91,5 +91,8 @@ export const users=async(req,res)=>{
   }
 }
 
-// get all user'S
+// get profile
+export const profile=async(req,res)=>{
+  res.json({user:req.user})
+}
 
