@@ -1,10 +1,12 @@
   import express from "express";
-import { addToCart, clearCart, removeProductFromCart, useCart } from "../controllers/cart.js";
-  const router =express.Router();
+import { addToCart, clearCart, decreaseproductToQy, removeProductFromCart, useCart } from "../controllers/cart.js";
+  
+import { Authenticated } from "../Middlewares/Auth.js";
+const router =express.Router();
 
 
 //add to cart
-router.post('/add',addToCart)
+router.post('/add',Authenticated,addToCart)
 
 //get User Cart
 router.get('/user',useCart)
@@ -16,7 +18,7 @@ router.delete('/remove/:productId',removeProductFromCart)
 router.delete('/clear',clearCart)
 
 // decrease item qty
-router.post('/--qty')
+router.post('/--qty',decreaseproductToQy)
 
 
   export default router;
