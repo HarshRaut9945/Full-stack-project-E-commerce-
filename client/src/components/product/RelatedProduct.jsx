@@ -1,24 +1,36 @@
-import React, { useContext } from "react";
-import AppContext from "../../context/AppContext";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import AppContext from "../../context/AppContext";
 
-const ShowProduct = () => {
+const RelatedProduct = ({ category, currentId }) => {
   const { products } = useContext(AppContext);
+  const [relatedproduct, setrelatedProduct] = useState([]);
+
+  useEffect(() => {
+    if (!category || !products) return;
+
+    const filtered = products.filter(
+      (data) =>
+        data.category?.toLowerCase() === category.toLowerCase() &&
+        data._id !== currentId
+    );
+
+    setrelatedProduct(filtered);
+  }, [category, products, currentId]);
 
   return (
-    <>
-    <div className="container py-4">
+    <div className="container text-center">
+      <h2 className="fw-bold mb-4">Related Products</h2>
+
       <div className="row g-4 justify-content-center">
-        {products?.map((product) => (
+        {relatedproduct.map((product) => (
           <div
-            key={product.id}
+            key={product._id}
             className="col-xl-3 col-lg-4 col-md-6 d-flex justify-content-center"
           >
             <div className="card shadow-lg border-0 h-100 bg-dark text-light product-card">
               
-              {/* Image */}
-              <Link  to={`/product/${product._id}`}
-              className="text-center p-3">
+              <Link to={`/product/${product._id}`} className="text-center p-3">
                 <img
                   src={product.imgSrc}
                   alt={product.title}
@@ -26,7 +38,6 @@ const ShowProduct = () => {
                 />
               </Link>
 
-              {/* Body */}
               <div className="card-body text-center d-flex flex-column">
                 <h5 className="card-title fw-semibold mb-3">
                   {product.title}
@@ -44,15 +55,12 @@ const ShowProduct = () => {
                   </div>
                 </div>
               </div>
-
             </div>
           </div>
         ))}
       </div>
 
-      {/* Custom Styles */}
-      <style>
-        {`
+      <style>{`
         .product-card {
           border-radius: 14px;
           transition: transform 0.25s ease, box-shadow 0.25s ease;
@@ -69,11 +77,9 @@ const ShowProduct = () => {
           object-fit: cover;
           border: 2px solid #ffc107;
         }
-        `}
-      </style>
+      `}</style>
     </div>
-    </>
   );
 };
 
-export default ShowProduct;
+export default RelatedProduct;
