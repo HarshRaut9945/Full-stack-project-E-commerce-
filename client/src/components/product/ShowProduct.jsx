@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import AppContext from "../../context/AppContext";
+import { Link } from "react-router-dom";
 
 const ShowProduct = () => {
   const { products } = useContext(AppContext);
@@ -15,13 +16,14 @@ const ShowProduct = () => {
             <div className="card shadow-lg border-0 h-100 bg-dark text-light product-card">
               
               {/* Image */}
-              <div className="text-center p-3">
+              <Link  to={`/product/${product._id}`}
+              className="text-center p-3">
                 <img
                   src={product.imgSrc}
                   alt={product.title}
                   className="img-fluid rounded product-img"
                 />
-              </div>
+              </Link>
 
               {/* Body */}
               <div className="card-body text-center d-flex flex-column">
