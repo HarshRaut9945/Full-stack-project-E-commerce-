@@ -1,8 +1,15 @@
 body{
   background-color: black;
   color: white;
+  
 }
 
 body::-webkit-scrollbar{
   display: none;
+}
+
+.nav_bar{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
