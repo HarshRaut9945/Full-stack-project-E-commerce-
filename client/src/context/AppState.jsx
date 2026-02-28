@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import AppContext from "./AppContext";
 import axios from "axios";
 import { useEffect } from "react";
+import { ToastContainer, toast,Bounce } from 'react-toastify';
 
 
 const AppState = (props) => {
@@ -32,6 +33,17 @@ const AppState = (props) => {
         withCredentials: true,
       });
       // alert(api.data.message);
+      toast.success(api.data.message, {
+position: "top-right",
+autoClose: 1500,
+hideProgressBar: false,
+closeOnClick: false,
+pauseOnHover: true,
+draggable: true,
+progress: undefined,
+theme: "dark",
+transition: Bounce,
+});
       return api.data
         // console.log("user register",api);  
     };

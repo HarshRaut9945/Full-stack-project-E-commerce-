@@ -20,6 +20,8 @@ const {name,email,password}=formdata
     e.preventDefault();
     // alert("Your form has been submitted");
   const result=  await register(name,email,password);
+
+  
   if(result.success){
     navigate('/login')
   }
