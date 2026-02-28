@@ -3,6 +3,7 @@ import AppContext from "./AppContext";
 import axios from "axios";
 import { useEffect } from "react";
 
+
 const AppState = (props) => {
   const url = "http://localhost:1000/api";
   const [products, setproducts] = useState([]);
@@ -20,8 +21,23 @@ const AppState = (props) => {
     fetchproduct();
   }, []);
 
+// register user 
+ const register = async (name,email,password) => {
+      const api = await axios.post(`${url}/user/register`,
+        {name,email,password},
+        {
+        headers: {
+          "Content-Type": "Application/json",
+        },
+        withCredentials: true,
+      });
+      // alert(api.data.message);
+      return api.data
+        // console.log("user register",api);  
+    };
+
   return (
-    <AppContext.Provider value={{ products }}>
+    <AppContext.Provider value={{ products,register }}>
       {props.children}
     </AppContext.Provider>
   );
