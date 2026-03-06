@@ -41,3 +41,14 @@ body::-webkit-scrollbar{
 .search_bar input:focus{
   outline: none;
 }
+
+.sub_bar{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  background-color: blueviolet;
+}
+.sub_bar .items{
+  padding: 10px;
+}
