@@ -3,7 +3,7 @@ import AppContext from "../../context/AppContext";
 import { Link } from "react-router-dom";
 
 const ShowProduct = () => {
-  const { products } = useContext(AppContext);
+  const { products,filteredData } = useContext(AppContext);
 
   return (
     <>

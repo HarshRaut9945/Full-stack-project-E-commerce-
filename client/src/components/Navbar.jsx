@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
+import AppContext from "../context/AppContext";
 
 const Navbar = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
+
+  const {Setfilterdata,products}=useContext(AppContext)
   const sumbitHandler = (e) => {
     e.preventDefault();
     navigate(`/product/search/${searchTerm}`);
@@ -33,12 +36,14 @@ const Navbar = () => {
           <div className="right">
             <button className="btn btn-warning mx-3   ">cart</button>
             <button className="btn btn-warning mx-3   ">profile</button>
-            <button className="btn btn-warning mx-3   ">login</button>
+            <Link to={"/login"} className="btn btn-secondary  mx-3   ">login</Link>
             <Link to={'/register'} className="btn btn-info mx-3   ">register</Link>
             <button className="btn btn-warning mx-3   ">logout</button>
           </div>
         </div>
-        <div className="sub_bar"></div>
+        <div className="sub_bar">
+          
+        </div>
       </div>
     </>
   );

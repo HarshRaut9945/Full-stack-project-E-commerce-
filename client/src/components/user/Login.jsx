@@ -3,7 +3,7 @@ import { FaUser, FaEnvelope, FaLock } from "react-icons/fa";
 import AppContext from "../../context/AppContext";
 import { useNavigate } from "react-router-dom";
 const Login = () => {
-    const {register}=useContext(AppContext);
+    const {login}=useContext(AppContext);
     const navigate=useNavigate();
   const [formdata, setFormdata] = useState({
     email: "",
@@ -14,15 +14,15 @@ const Login = () => {
     const { name, value } = e.target;
     setFormdata({ ...formdata, [name]: value });
   };
-const {name,email,password}=formdata
+const {email,password}=formdata
   const submitHandler = async(e) => {
     e.preventDefault();
     // alert("Your form has been submitted");
-  const result=  await register(name,email,password);
+  const result=  await login(email,password);
 
   
   if(result.success){
-    navigate('/login')
+    navigate('/')
   }
   };
 
@@ -30,7 +30,7 @@ const {name,email,password}=formdata
     <div className="d-flex justify-content-center align-items-center min-vh-100 bg-dark">
       <div className="card register-card shadow-lg p-4">
         <h2 className="text-center mb-4 fw-bold text-warning">
-          Create Account
+          User Login
         </h2>
 
         <form onSubmit={submitHandler}>
@@ -71,7 +71,7 @@ const {name,email,password}=formdata
 
           <div className="d-grid">
             <button type="submit" className="btn btn-warning fw-semibold">
-              Register
+            Login
             </button>
           </div>
         </form>
